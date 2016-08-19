@@ -9,6 +9,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -69,14 +70,17 @@ public class SecondActivity extends AppCompatActivity {
             }
         });
 
+        addedlistView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                addedtodoList.remove(position);
+                addedarrayAdapter.notifyDataSetChanged();
 
-
-
+                return false;
+            }
+        });
 //        CustomBaseAdapter adapter = new CustomBaseAdapter(this, );
 //        addedlistView.setAdapter(adapter);
-
     }
-
-
 }
 
