@@ -13,13 +13,16 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    private ListView listView;
+    private TextView maintitleView;
+    private ListView mainlistView;
     private FloatingActionButton mainFAB;
-    private LinkedList<String> maintodoList = new LinkedList<>();
+    private ArrayList<String> maintodoList = new ArrayList<>();
     private ArrayAdapter<String> mainarrayAdapter;
 
     @Override
@@ -27,12 +30,41 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        listView = (ListView)findViewById(R.id.list_view1);
+        mainlistView = (ListView)findViewById(R.id.list_view1);
+        maintitleView = (TextView)findViewById(R.id.title1);
         mainFAB = (FloatingActionButton)findViewById(R.id.mainFAB);
 
 //        final CustomBaseAdapter adapter = new CustomBaseAdapter(MainActivity.this,);
         mainarrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, maintodoList);
-        listView.setAdapter(mainarrayAdapter);
+        mainlistView.setAdapter(mainarrayAdapter);
+
+        maintitleView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+                final EditText input = new EditText(MainActivity.this);
+                input.setInputType(InputType.TYPE_CLASS_TEXT);
+
+                builder.setView(input);
+
+                builder.setMessage(R.string.change_the_title)
+                        .setPositiveButton(R.string.change, new DialogInterface.OnClickListener() {
+                             public void onClick(DialogInterface dialog, int id) {
+                                maintitleView.setText(input.getText().toString());
+                            }
+                        })
+                        .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Toast.makeText(getApplicationContext(), "NVM", Toast.LENGTH_SHORT).show();
+
+                            }
+                        });
+
+                Dialog dialog = builder.create();
+                dialog.show();
+            }
+        });
 
         mainFAB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 builder.setView(input);
 
                 builder.setMessage(R.string.change_the_text)
-                        .setPositiveButton(R.string.change, new DialogInterface.OnClickListener() {
+                        .setPositiveButton(R.string.add, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 maintodoList.add(input.getText().toString());
                                 mainarrayAdapter.notifyDataSetChanged();
@@ -53,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
                         })
                         .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
+                                Toast.makeText(getApplicationContext(), "Whoopsie!", Toast.LENGTH_SHORT).show();
+
                             }
                         });
 
@@ -60,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mainlistView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), SecondActivity.class);
@@ -69,10 +103,11 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        mainlistView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 maintodoList.remove(position);
+                Toast.makeText(getApplicationContext(), "It's Gone!", Toast.LENGTH_SHORT).show();
                 mainarrayAdapter.notifyDataSetChanged();
 
                 return false;

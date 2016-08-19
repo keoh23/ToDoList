@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -52,8 +53,8 @@ public class SecondActivity extends AppCompatActivity {
 
                 builder.setView(input);
 
-                builder.setMessage("To Do!")
-                        .setPositiveButton(R.string.change, new DialogInterface.OnClickListener() {
+                builder.setMessage(R.string.addtodo)
+                        .setPositiveButton(R.string.add, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 addedtodoList.add(input.getText().toString());
                                 addedarrayAdapter.notifyDataSetChanged();
@@ -62,6 +63,8 @@ public class SecondActivity extends AppCompatActivity {
                         })
                         .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
+                                Toast.makeText(getApplicationContext(), "??", Toast.LENGTH_SHORT).show();
+
                             }
                         });
 
@@ -74,6 +77,7 @@ public class SecondActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 addedtodoList.remove(position);
+                Toast.makeText(getApplicationContext(), "*POOF*", Toast.LENGTH_SHORT).show();
                 addedarrayAdapter.notifyDataSetChanged();
 
                 return false;

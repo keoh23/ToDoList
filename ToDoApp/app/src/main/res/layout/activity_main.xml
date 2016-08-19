@@ -14,6 +14,7 @@
         android:id="@+id/title1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:text="GET IT DONE!"
         android:textSize="50dp" />
 
@@ -37,6 +38,8 @@
             android:layout_gravity="bottom|right"
             android:layout_margin="16dp"
             android:src="@drawable/ic_add_white"
+            android:hapticFeedbackEnabled="true"
+            app:rippleColor="@android:color/white"
             app:elevation="4dp"
             app:layout_anchor="@id/list_view1"
             app:layout_anchorGravity="bottom|right|end" />
