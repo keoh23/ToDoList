@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), SecondActivity.class);
-//                intent.putExtra("Title", maintodoList);
+                intent.putExtra("Title", maintodoList.get(position));
                 startActivity(intent);
 
             }

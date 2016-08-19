@@ -31,11 +31,11 @@ public class SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_added);
 
+        addedtitleView = (TextView)findViewById(R.id.added_title1);
         Intent intent = getIntent();
         String title = intent.getStringExtra("Title");
         addedtitleView.setText(title);
 
-        addedtitleView = (TextView)findViewById(R.id.added_title1);
         addedlistView = (ListView)findViewById(R.id.added_list_view1);
         addedFAB = (FloatingActionButton)findViewById(R.id.addedFAB);
         addedarrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, addedtodoList);
