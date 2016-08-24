@@ -11,4 +11,4 @@ To delete an already entered list item on any screen, long press the item and PO
 
 If you would like to change the main title "Get It Done," long press the title and an text entry pop up will come up allowing changes.
 
-![Homescreen Screenshot](https://drive.google.com/file/d/0B9U5aO4eQ97JNDFPMkQ2UU84ak0/view?usp=sharing)
+![Homescreen Screenshot](http://oi65.tinypic.com/2nb671i.jpg)
