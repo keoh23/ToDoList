@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
                         .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 Toast.makeText(getApplicationContext(), "NVM", Toast.LENGTH_SHORT).show();
-
                             }
                         });
 
